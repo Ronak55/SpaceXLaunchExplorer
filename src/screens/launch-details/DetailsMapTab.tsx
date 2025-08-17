@@ -4,7 +4,6 @@ import { useDetails } from './DetailsContext';
 import { haversineKm } from '@utils/geo';
 import { openNativeMaps } from '@utils/maps';
 
-const { height } = Dimensions.get('window');
 
 export default function DetailsMapTab() {
   const { launchpad, location } = useDetails();
@@ -18,10 +17,10 @@ export default function DetailsMapTab() {
   }
 
   const initialRegion: Region = {
-    latitude: launchpad.latitude,
-    longitude: launchpad.longitude,
-    latitudeDelta: 0.0922, // Adjust for desired zoom level
-    longitudeDelta: 0.0421, // Adjust for desired zoom level
+    latitude: location?.granted ? location.coords.latitude : launchpad.latitude,
+    longitude: location?.granted ? location.coords.longitude : launchpad.longitude,
+    latitudeDelta: 0.05, 
+    longitudeDelta: 0.05,
   };
 
   const distance =
@@ -41,7 +40,6 @@ export default function DetailsMapTab() {
           initialRegion={initialRegion}
           showsUserLocation={location?.granted === true}
           showsMyLocationButton
-          key={launchpad.id} // Optional: Force MapView re-render if launchpad changes
         >
           <Marker
             coordinate={{ latitude: launchpad.latitude, longitude: launchpad.longitude }}
