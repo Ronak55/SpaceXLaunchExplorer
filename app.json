@@ -4,26 +4,49 @@
     "slug": "spacex-launch-explorer",
     "version": "1.0.0",
     "orientation": "portrait",
+    "sdkVersion": "53.0.0",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "We show your distance to the launchpad and your position on the map."
+      },
+      "config": {
+        "googleMapsApiKey": "AIzaSyAdUMbmNCE3IBo2t7ROJi9LOABhmuKyE9A" 
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ],
+      "package": "com.irohnyyy.spacexlaunchexplorer",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAdUMbmNCE3IBo2t7ROJi9LOABhmuKyE9A" 
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-maps"
+    ]
   }
 }
+
